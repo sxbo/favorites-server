@@ -1,1 +1,3 @@
-"# favorite-server --favoritesÏîÄ¿µÄºóÌ¨ÊµÏÖ" 
+"# favorite-server --favoritesé¡¹ç›®çš„åå°"
+
+# Springboot+redis+JPAï¼ˆHibernateï¼‰
