@@ -16,7 +16,6 @@ public class Result extends ResponseEntity {
     public Result(ResultMsg msg) {
         super(new ResultResponse(msg.getCode(),msg.getMsg(),""), HttpStatus.OK);
     }
-
     public Result(ResultMsg msg,Object o){
         super(new ResultResponse(msg.getCode(),msg.getMsg(),o),HttpStatus.OK);
     }

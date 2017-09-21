@@ -1,17 +1,14 @@
 package com.sxbo.favoritesserver.controller;
 
+import com.sxbo.favoritesserver.comm.R;
 import com.sxbo.favoritesserver.comm.aop.LoggerManage;
 import com.sxbo.favoritesserver.domain.User;
 import com.sxbo.favoritesserver.domain.result.Result;
 import com.sxbo.favoritesserver.domain.result.ResultMsg;
-import com.sxbo.favoritesserver.domain.result.ResultResponse;
 import com.sxbo.favoritesserver.repository.UserRepository;
 import com.sxbo.favoritesserver.utils.DateUtils;
-import org.apache.log4j.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,29 +23,27 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/user")
-public class UserController {
-
-    protected Logger logger = Logger.getLogger(this.getClass());
+public class UserController extends BaseCotroller{
 
     @Autowired
     private UserRepository userRepository;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @LoggerManage(description = "login")
-    public ResponseEntity<ResultResponse> login(@RequestBody User user){
+    public Result login(@RequestBody User user){
         try{
             User loginuser = userRepository.findByUserNameOrEmail(user.getUserName(),user.getEmail());
             if (loginuser == null) {
-                ResultResponse resultResponse = new ResultResponse(ResultMsg.LoginNameNotExists, "");
-                return new ResponseEntity<ResultResponse>(resultResponse, HttpStatus.OK);
+                return new Result(ResultMsg.LoginNameNotExists,"");
             }else if(!user.getPassWord().equals(loginuser.getPassWord())){
-                ResultResponse resultResponse = new ResultResponse(ResultMsg.LoginNameOrPassWordError,"");
-                return  new ResponseEntity<ResultResponse>(resultResponse,HttpStatus.OK);
+                return  new Result(ResultMsg.LoginNameOrPassWordError,"");
             }
-            return new ResponseEntity<ResultResponse>(new ResultResponse(ResultMsg.SUCCESS,user),HttpStatus.OK);
+            getSession().setAttribute(R.LOGIN_SESSION_KEY,loginuser);
+            getSession().setMaxInactiveInterval(R.COOKIE_TIMEOUT);
+            return new Result(ResultMsg.SUCCESS,loginuser);
         }catch (Exception e){
             logger.error("login failed",e);
-            return new ResponseEntity<ResultResponse>(new ResultResponse(ResultMsg.FAILED,""),HttpStatus.OK);
+            return new Result(ResultMsg.FAILED,"");
         }
     }
 
@@ -56,11 +51,11 @@ public class UserController {
     @LoggerManage(description = "注册")
     public Result create(@RequestBody User user){
         try{
+            System.err.print(getSession().getAttribute(R.LOGIN_SESSION_KEY));
             User registUser = userRepository.findByEmail(user.getEmail());
             if (null != registUser){
                 return new Result(ResultMsg.EmailUsed);
             }
-
             User userNameUser = userRepository.findByUserName(user.getUserName());
             if (null != userNameUser){
                 return new Result(ResultMsg.UserNameUsed);
