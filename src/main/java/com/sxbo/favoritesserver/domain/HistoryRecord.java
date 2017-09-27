@@ -4,28 +4,29 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.io.Serializable;
 
 /**
  * @Author xiaobo GG [https://github.com/sxbo]
- * @Date 2017/9/89:23
+ * @Date 2017/9/2716:41
+ * 浏览历史记录
  */
+
 @Entity
-public class FeedBack extends EntitySerialiaz{
+public class HistoryRecord {
 
     @Id
     @GeneratedValue
     private Long id;
-    @Column(nullable = true)
+
+    @Column(nullable = false)
     private Long userId;
+
     @Column(nullable = false)
-    private String feedBackAdvice;
-    @Column(nullable = true)
-    private String feedBackName;
-    @Column(nullable = false)
-    private String phone;
+    private Long collectId;
+
     @Column(nullable = false)
     private Long createTime;
+
     @Column(nullable = false)
     private Long lastModifyTime;
 
@@ -45,28 +46,12 @@ public class FeedBack extends EntitySerialiaz{
         this.userId = userId;
     }
 
-    public String getFeedBackAdvice() {
-        return feedBackAdvice;
+    public Long getCollectId() {
+        return collectId;
     }
 
-    public void setFeedBackAdvice(String feedBackAdvice) {
-        this.feedBackAdvice = feedBackAdvice;
-    }
-
-    public String getFeedBackName() {
-        return feedBackName;
-    }
-
-    public void setFeedBackName(String feedBackName) {
-        this.feedBackName = feedBackName;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setCollectId(Long collectId) {
+        this.collectId = collectId;
     }
 
     public Long getCreateTime() {

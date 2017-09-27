@@ -9,6 +9,8 @@ import org.springframework.util.MultiValueMap;
  * @Date 2017/9/613:57
  */
 public class Result extends ResponseEntity {
+
+
     public Result(HttpStatus status) {
         super(status);
     }

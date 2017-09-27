@@ -7,9 +7,8 @@ import javax.persistence.Id;
 import java.io.Serializable;
 
 @Entity
-public class User implements Serializable{
+public class User extends EntitySerialiaz{
 
-    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue

@@ -1,33 +1,43 @@
 package com.sxbo.favoritesserver.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import java.io.Serializable;
+import com.sxbo.favoritesserver.domain.enums.AttentionStatus;
+
+import javax.persistence.*;
 
 /**
  * @Author xiaobo GG [https://github.com/sxbo]
- * @Date 2017/9/89:23
+ * @Date 2017/9/2716:38
+ * 关注
  */
 @Entity
-public class FeedBack extends EntitySerialiaz{
+public class Attention {
 
     @Id
     @GeneratedValue
     private Long id;
-    @Column(nullable = true)
+
+    @Column(nullable = false)
     private Long userId;
+
     @Column(nullable = false)
-    private String feedBackAdvice;
-    @Column(nullable = true)
-    private String feedBackName;
+    private Long AttentionedUserId;
+
     @Column(nullable = false)
-    private String phone;
+    @Enumerated(EnumType.STRING)
+    private AttentionStatus status;
+
     @Column(nullable = false)
     private Long createTime;
+
     @Column(nullable = false)
     private Long lastModifyTime;
+
+    @Transient
+    private String name;
+
+    public Attention() {
+        super();
+    }
 
     public Long getId() {
         return id;
@@ -45,28 +55,20 @@ public class FeedBack extends EntitySerialiaz{
         this.userId = userId;
     }
 
-    public String getFeedBackAdvice() {
-        return feedBackAdvice;
+    public Long getAttentionedUserId() {
+        return AttentionedUserId;
     }
 
-    public void setFeedBackAdvice(String feedBackAdvice) {
-        this.feedBackAdvice = feedBackAdvice;
+    public void setAttentionedUserId(Long attentionedUserId) {
+        AttentionedUserId = attentionedUserId;
     }
 
-    public String getFeedBackName() {
-        return feedBackName;
+    public AttentionStatus getStatus() {
+        return status;
     }
 
-    public void setFeedBackName(String feedBackName) {
-        this.feedBackName = feedBackName;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setStatus(AttentionStatus status) {
+        this.status = status;
     }
 
     public Long getCreateTime() {
@@ -83,5 +85,13 @@ public class FeedBack extends EntitySerialiaz{
 
     public void setLastModifyTime(Long lastModifyTime) {
         this.lastModifyTime = lastModifyTime;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

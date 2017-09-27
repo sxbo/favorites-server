@@ -1,7 +1,8 @@
-package com.sxbo.favoritesserver.service;
+package com.sxbo.favoritesserver.service.impl;
 
 import com.sxbo.favoritesserver.domain.FeedBack;
 import com.sxbo.favoritesserver.repository.FeedBackRepository;
+import com.sxbo.favoritesserver.service.FeedBackService;
 import com.sxbo.favoritesserver.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
