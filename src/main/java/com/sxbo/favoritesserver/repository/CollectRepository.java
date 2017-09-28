@@ -38,6 +38,10 @@ public interface CollectRepository extends JpaRepository<Collect,Long>{
 
     List<Collect> findByFavorIdAndUrlAndUserIdAndIsDelete(Long favorId,String url,Long userId,IsDelete isDelete);
 
+    Collect findByIdAndUserId(Long id,Long userId);
+
+    Collect findByUserIdAndUrl(Long userId,String url);
+
     @Transactional
     @Modifying
     @Query("update Collect c set c.type = ?1 where c.id = ?2 and c.userId =?3")

@@ -124,4 +124,20 @@ public class Comment {
     public void setProfilePicture(String profilePicture) {
         this.profilePicture = profilePicture;
     }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", collectId=" + collectId +
+                ", content='" + content + '\'' +
+                ", replyUserId=" + replyUserId +
+                ", createTime=" + createTime +
+                ", commentTime='" + commentTime + '\'' +
+                ", userName='" + userName + '\'' +
+                ", replyUserName='" + replyUserName + '\'' +
+                ", profilePicture='" + profilePicture + '\'' +
+                '}';
+    }
 }

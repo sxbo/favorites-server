@@ -89,4 +89,17 @@ public class Message {
     public void setCreateTime(Long createTime) {
         this.createTime = createTime;
     }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", collectId='" + collectId + '\'' +
+                ", type='" + type + '\'' +
+                ", operId='" + operId + '\'' +
+                ", readed='" + readed + '\'' +
+                ", createTime=" + createTime +
+                '}';
+    }
 }

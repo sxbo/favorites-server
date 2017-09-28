@@ -104,4 +104,19 @@ public class RightNav {
     public void setModelName(String modelName) {
         this.modelName = modelName;
     }
+
+    @Override
+    public String toString() {
+        return "RightNav{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", defaultFavortie='" + defaultFavortie + '\'' +
+                ", defaultCollectType='" + defaultCollectType + '\'' +
+                ", defaultModel='" + defaultModel + '\'' +
+                ", createTime=" + createTime +
+                ", lastModifyTime=" + lastModifyTime +
+                ", collectTypeName='" + collectTypeName + '\'' +
+                ", modelName='" + modelName + '\'' +
+                '}';
+    }
 }

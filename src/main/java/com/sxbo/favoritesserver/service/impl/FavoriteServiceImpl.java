@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 @Service("favoriteService")
 public class FavoriteServiceImpl implements FavoriteService {
 
+
+
     @Autowired
     private FavoriteRepository favoriteRepository;
 
@@ -32,6 +34,17 @@ public class FavoriteServiceImpl implements FavoriteService {
         favorite.setCreateTime(DateUtils.getCurrentTime());
         favorite.setLastModifyTime(DateUtils.getCurrentTime());
         favoriteRepository.save(favorite);
+        System.err.println(favorite);
         return favorite;
+    }
+
+    //收藏夹是否已经存在
+    @Override
+    public boolean favoriteIsExsited(Long userId, String name) {
+        Favorite favorite = favoriteRepository.findByUserIdAndName(userId,name);
+        if (null != favorite){
+            return true;
+        }
+        return false;
     }
 }

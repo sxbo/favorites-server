@@ -105,4 +105,18 @@ public class Letter {
     public void setSendType(String sendType) {
         this.sendType = sendType;
     }
+
+    @Override
+    public String toString() {
+        return "Letter{" +
+                "id=" + id +
+                ", sendUserId=" + sendUserId +
+                ", content='" + content + '\'' +
+                ", receiveUserId=" + receiveUserId +
+                ", pid=" + pid +
+                ", type=" + type +
+                ", createTime=" + createTime +
+                ", sendType='" + sendType + '\'' +
+                '}';
+    }
 }

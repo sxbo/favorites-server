@@ -29,6 +29,9 @@ public class Favorite extends EntitySerialiaz{
     @Column(nullable = false)
     private Long lastModifyTime;
 
+    @Transient
+    private Long publicCount;
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -85,7 +88,18 @@ public class Favorite extends EntitySerialiaz{
         return publicCount;
     }
 
-    @Transient
-    private Long publicCount;
 
+
+    @Override
+    public String toString() {
+        return "Favorite{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", name='" + name + '\'' +
+                ", count=" + count +
+                ", createTime=" + createTime +
+                ", lastModifyTime=" + lastModifyTime +
+                ", publicCount=" + publicCount +
+                '}';
+    }
 }

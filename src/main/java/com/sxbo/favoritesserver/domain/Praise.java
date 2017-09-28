@@ -58,4 +58,14 @@ public class Praise {
     public void setCreateTime(Long createTime) {
         this.createTime = createTime;
     }
+
+    @Override
+    public String toString() {
+        return "Praise{" +
+                "id=" + id +
+                ", collectId=" + collectId +
+                ", userId=" + userId +
+                ", createTime=" + createTime +
+                '}';
+    }
 }

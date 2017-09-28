@@ -69,4 +69,15 @@ public class HistoryRecord {
     public void setLastModifyTime(Long lastModifyTime) {
         this.lastModifyTime = lastModifyTime;
     }
+
+    @Override
+    public String toString() {
+        return "HistoryRecord{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", collectId=" + collectId +
+                ", createTime=" + createTime +
+                ", lastModifyTime=" + lastModifyTime +
+                '}';
+    }
 }

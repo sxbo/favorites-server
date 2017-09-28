@@ -94,4 +94,17 @@ public class Attention {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "Attention{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", AttentionedUserId=" + AttentionedUserId +
+                ", status=" + status +
+                ", createTime=" + createTime +
+                ", lastModifyTime=" + lastModifyTime +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

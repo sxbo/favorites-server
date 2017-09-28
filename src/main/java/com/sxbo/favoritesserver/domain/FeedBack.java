@@ -84,4 +84,17 @@ public class FeedBack extends EntitySerialiaz{
     public void setLastModifyTime(Long lastModifyTime) {
         this.lastModifyTime = lastModifyTime;
     }
+
+    @Override
+    public String toString() {
+        return "FeedBack{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", feedBackAdvice='" + feedBackAdvice + '\'' +
+                ", feedBackName='" + feedBackName + '\'' +
+                ", phone='" + phone + '\'' +
+                ", createTime=" + createTime +
+                ", lastModifyTime=" + lastModifyTime +
+                '}';
+    }
 }

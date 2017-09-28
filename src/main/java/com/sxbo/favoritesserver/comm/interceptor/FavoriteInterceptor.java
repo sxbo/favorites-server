@@ -20,7 +20,7 @@ public class FavoriteInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         System.err.println(request.getRequestURI());//添加的RequestMapping 例如"/user/login"
         System.err.println(request.getRequestURL());//整个请求路径带ip地址
-        System.err.print(request.getSession().getAttribute(R.LOGIN_SESSION_KEY));
+        System.err.println(request.getSession().getAttribute(R.LOGIN_SESSION_KEY));
         //response.setStatus(401);
         return true;
     }

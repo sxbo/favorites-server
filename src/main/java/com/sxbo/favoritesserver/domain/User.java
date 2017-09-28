@@ -128,4 +128,21 @@ public class User extends EntitySerialiaz{
     public String getBackgroundPicture() {
         return backgroundPicture;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", passWord='" + passWord + '\'' +
+                ", email='" + email + '\'' +
+                ", profilePicture='" + profilePicture + '\'' +
+                ", introduction='" + introduction + '\'' +
+                ", createTime=" + createTime +
+                ", lastModifyTime=" + lastModifyTime +
+                ", outDate='" + outDate + '\'' +
+                ", validataCode='" + validataCode + '\'' +
+                ", backgroundPicture='" + backgroundPicture + '\'' +
+                '}';
+    }
 }

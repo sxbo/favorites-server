@@ -51,4 +51,14 @@ public class AttentionedUser {
     public void setAttentioned(String attentioned) {
         this.attentioned = attentioned;
     }
+
+    @Override
+    public String toString() {
+        return "AttentionedUser{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", profilePicture='" + profilePicture + '\'' +
+                ", attentioned='" + attentioned + '\'' +
+                '}';
+    }
 }

@@ -7,5 +7,8 @@ import com.sxbo.favoritesserver.domain.Favorite;
  * @Date 2017/9/2610:58
  */
 public interface FavoriteService {
-    public Favorite saveFavorite(Long userId,Long count,String name);
+    Favorite saveFavorite(Long userId,Long count,String name);
+
+    //收藏夹是否已经存在
+    boolean favoriteIsExsited (Long userId,String name);
 }

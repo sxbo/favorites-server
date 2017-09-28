@@ -191,4 +191,26 @@ public class Collect extends EntitySerialiaz{
     public void setNewFavorite(String newFavorite) {
         this.newFavorite = newFavorite;
     }
+
+    @Override
+    public String toString() {
+        return "Collect{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", favorId=" + favorId +
+                ", url='" + url + '\'' +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", logoUrl='" + logoUrl + '\'' +
+                ", charset='" + charset + '\'' +
+                ", type=" + type +
+                ", remark='" + remark + '\'' +
+                ", isDelete=" + isDelete +
+                ", createTime=" + createTime +
+                ", lastModifyTime=" + lastModifyTime +
+                ", category='" + category + '\'' +
+                ", collectTime='" + collectTime + '\'' +
+                ", newFavorite='" + newFavorite + '\'' +
+                '}';
+    }
 }
