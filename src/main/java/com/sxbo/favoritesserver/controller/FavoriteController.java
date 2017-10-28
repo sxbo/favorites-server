@@ -2,8 +2,11 @@ package com.sxbo.favoritesserver.controller;
 
 import com.sxbo.favoritesserver.comm.aop.LoggerManage;
 import com.sxbo.favoritesserver.domain.Favorite;
+import com.sxbo.favoritesserver.domain.enums.CollectType;
+import com.sxbo.favoritesserver.domain.enums.IsDelete;
 import com.sxbo.favoritesserver.domain.result.Result;
 import com.sxbo.favoritesserver.domain.result.ResultMsg;
+import com.sxbo.favoritesserver.repository.CollectRepository;
 import com.sxbo.favoritesserver.repository.FavoriteRepository;
 import com.sxbo.favoritesserver.service.FavoriteService;
 import com.sxbo.favoritesserver.utils.DateUtils;
@@ -26,10 +29,12 @@ public class FavoriteController extends BaseCotroller{
 
     @Autowired
     private FavoriteService favoriteService;
+    @Autowired
+    private CollectRepository collectRepository;
+    @PostMapping(value = "/add")
+    @LoggerManage( description = "添加收藏夹")
 
-    @RequestMapping(value = "/add",method = RequestMethod.POST)
-    @LoggerManage(description = "添加收藏夹")
-    public Result addFavorite(@RequestBody String name){
+    public Result addFavorite(String name){
         if (StringUtils.isNotBlank(name)){
             Favorite favorite = favoriteRepository.findByUserIdAndName(getUserId(),name);
             if (null !=favorite){
@@ -42,14 +47,13 @@ public class FavoriteController extends BaseCotroller{
                     logger.error("异常",e);
                     return new Result(ResultMsg.FAILED);
                 }
+                return new Result(ResultMsg.SUCCESS);
             }
         }else {
             logger.info("收藏夹名称为空");
             return new Result(ResultMsg.FavoritesNameIsNull);
         }
-        return null;
     }
-
 
     @RequestMapping(value = "/addImport",method = RequestMethod.POST)
     @LoggerManage(description = "创建导入收藏夹")
@@ -122,11 +126,11 @@ public class FavoriteController extends BaseCotroller{
             if (null !=userId && 0 != userId){
                 id = userId;
             }
-            favorites = favoriteRepository.findByUserIdOrderByIdDesc(id);
-            if (!getUserId().equals(userId)){
-                for (Favorite fav:favorites){
-                    //这里在后边添加
-//                    fav.setPublicCount();
+            favorites = favoriteRepository.findByUserIdOrderByIdAsc(id);
+            if (!getUserId().equals(userId)) {
+                for (Favorite fav : favorites) { //给每个收藏夹设置这两个值
+                    fav.setPublicCount(collectRepository.countByFavorIdAndTypeAndIsDelete(fav.getId(), CollectType.PUBLIC, IsDelete.NO));
+                    fav.setCount(collectRepository.countByFavorIdAndIsDelete(fav.getId(), IsDelete.NO));
                 }
             }
         }catch (Exception e){

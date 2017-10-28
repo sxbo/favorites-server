@@ -29,4 +29,6 @@ public class Result extends ResponseEntity {
     public Result(Object body, MultiValueMap headers, HttpStatus status) {
         super(body, headers, status);
     }
+
+
 }

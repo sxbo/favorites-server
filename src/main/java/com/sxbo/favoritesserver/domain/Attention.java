@@ -20,7 +20,7 @@ public class Attention {
     private Long userId;
 
     @Column(nullable = false)
-    private Long AttentionedUserId;
+    private Long attentionedUserId;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
@@ -56,11 +56,11 @@ public class Attention {
     }
 
     public Long getAttentionedUserId() {
-        return AttentionedUserId;
+        return attentionedUserId;
     }
 
     public void setAttentionedUserId(Long attentionedUserId) {
-        AttentionedUserId = attentionedUserId;
+        attentionedUserId = attentionedUserId;
     }
 
     public AttentionStatus getStatus() {
@@ -100,7 +100,7 @@ public class Attention {
         return "Attention{" +
                 "id=" + id +
                 ", userId=" + userId +
-                ", AttentionedUserId=" + AttentionedUserId +
+                ", AttentionedUserId=" + attentionedUserId +
                 ", status=" + status +
                 ", createTime=" + createTime +
                 ", lastModifyTime=" + lastModifyTime +

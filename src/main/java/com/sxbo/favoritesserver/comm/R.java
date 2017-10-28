@@ -18,7 +18,7 @@ public class R {
 
     public static String DES3_KEY = "9964DYByKL967c3308imytCB";
 
-    public static String default_logo="img/logo.jpg";
+    public static String default_logo="../../../res/img/logo.jpg";
 
     public static String userAgent="Mozilla";
 

@@ -2,10 +2,12 @@ package com.sxbo.favoritesserver.controller;
 
 import com.sxbo.favoritesserver.comm.R;
 import com.sxbo.favoritesserver.comm.aop.LoggerManage;
+import com.sxbo.favoritesserver.domain.Favorite;
 import com.sxbo.favoritesserver.domain.User;
 import com.sxbo.favoritesserver.domain.result.Result;
 import com.sxbo.favoritesserver.domain.result.ResultMsg;
 import com.sxbo.favoritesserver.repository.UserRepository;
+import com.sxbo.favoritesserver.service.FavoriteService;
 import com.sxbo.favoritesserver.utils.DateUtils;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,8 @@ public class UserController extends BaseCotroller{
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private FavoriteService favoriteService;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @LoggerManage(description = "login")
@@ -64,6 +68,8 @@ public class UserController extends BaseCotroller{
             user.setLastModifyTime(DateUtils.getCurrentTime());
             user.setProfilePicture("img/favicon.png");
             userRepository.save(user);
+            //添加未读列表默认呢收藏夹
+            Favorite favorite = favoriteService.saveFavorite(user.getId(),0l,"未读列表");
             return new Result(ResultMsg.SUCCESS);
         }catch (Exception e){
             logger.error("",e);

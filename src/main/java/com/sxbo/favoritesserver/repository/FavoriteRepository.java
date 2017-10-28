@@ -16,7 +16,7 @@ import java.util.List;
 public interface FavoriteRepository extends JpaRepository<Favorite,Long>{
     List<Favorite> findByUserId(Long userId);
 
-    List<Favorite> findByUserIdOrderByIdDesc(Long userId);
+    List<Favorite> findByUserIdOrderByIdAsc(Long userId);
 
     Favorite findByUserIdAndName(Long userId,String name);
 

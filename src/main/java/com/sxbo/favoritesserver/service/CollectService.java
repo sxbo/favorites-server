@@ -1,6 +1,10 @@
 package com.sxbo.favoritesserver.service;
 
 import com.sxbo.favoritesserver.domain.Collect;
+import com.sxbo.favoritesserver.domain.enums.CollectType;
+import com.sxbo.favoritesserver.domain.view.CollectViewSummary;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.Map;
@@ -10,6 +14,18 @@ import java.util.Map;
  * @Date 2017/9/2716:03
  */
 public interface CollectService {
+
+    public List<CollectViewSummary> getCollects(String type, Long userId, Pageable pageable, Long favoriteId, Long specUserId);
+
+    public List<CollectViewSummary> getAllCollects(Long userId,Pageable pageable);
+
+    public List<CollectViewSummary> getTypeCollects(Long userId, CollectType type,Pageable pageable);
+
+    public List<CollectViewSummary> getCollectsInFavorite(Long userId,Long favoriteId,Pageable pageable);
+
+    public List<CollectViewSummary> getOthersPublicCollects(Long userID,Pageable pageable);
+
+    public List<CollectViewSummary> getUserAndAttCollects(Long userId,List<Long> userIds,Pageable pageable);
 
     /**
      * 收藏一条记录
@@ -28,7 +44,7 @@ public interface CollectService {
      * @param collect
      * @return
      */
-    boolean isCollected(Collect collect);
+    boolean isCollected(Long user,Collect collect);
 
     /**
      * 把html导入到收藏夹中
@@ -52,7 +68,7 @@ public interface CollectService {
      * @param key
      * @return
      */
-    List<Collect> searchMy(Long userId,String key);
+    List<CollectViewSummary> searchMy(Long userId,String key,Pageable pageable);
 
     /**
      * 从别人的收藏中查找
@@ -60,13 +76,15 @@ public interface CollectService {
      * @param key
      * @return
      */
-    List<Collect> searchOther(Long userId,String key);
+    List<CollectViewSummary> searchOther(Long userId, String key, Pageable pageable);
 
     /**
-     * 收藏别人的收藏
+     * 收藏别人的收藏,返回是否收藏成功
      * @param collect
      */
-    void otherCollect (Collect collect);
+    boolean collectOther (Long myId,Collect collect);
+
+    void noticeFriends(Collect collect);
 
     /**
      * 点赞
